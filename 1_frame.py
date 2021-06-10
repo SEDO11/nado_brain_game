@@ -2,9 +2,6 @@ import pygame
 
 #초기화
 pygame.init()
-info = pygame.display.Info()
-width = info.current_w
-height = info.current_h
 screen_width = 1280 #가로크기
 screen_height = 720 #세로크기
 screen = pygame.display.set_mode((screen_width, screen_height))
