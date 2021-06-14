@@ -54,6 +54,12 @@ def display_game_screen(): # 게임 화면 표시
     for idx, rect in enumerate(number_buttons, start=1):
         pygame.draw.rect(screen, GRAY, rect)
 
+        #숫자 텍스트
+        cell_text = game_font.render(str(idx), True, WHITE)
+        text_rect = cell_text.get_rect(center = rect.center)
+        screen.blit(cell_text, text_rect)
+
+
 # 마우스를 클릭해서 얻은 좌표값을 position에 저장 
 def check_buttons(position): # 들어온 좌표 값 확인
     global start
@@ -72,6 +78,7 @@ center_x = 120 # 센터 x축
 center_y = screen_height-120 # 센터 y축
 start_button = pygame.Rect(0, 0, 120, 120) #버튼 생성
 start_button.center = (center_x, center_y) # 버튼의 중심위치 설정
+game_font = pygame.font.Font(None, 120) # 폰트 정의
 
 #화면색깔
 BLACK = (0, 0, 0) #RGB
