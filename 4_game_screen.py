@@ -46,8 +46,7 @@ def shuffle_grid(number_count):
 
 def display_start_screen(): # 시작 버튼 표시, 그리기
     pygame.draw.circle(screen, WHITE, start_button.center, 60, 5) # 흰색 동그라미를 그리고 중심좌표는 start_button 의 중심좌표를 따라가고, 반지름은 60, 두께는 5
-    font = pygame.font.Font(None,30) # 파이썬 기본폰트, 글자 크기는 30으로 설정
-    text = font.render('Start',True, WHITE)  #텍스트가 표시되는 표면을 만듬, Start문구, 하얀색
+    text = start_font.render('Start',True, WHITE)  #텍스트가 표시되는 표면을 만듬, Start문구, 하얀색
     screen.blit(text,(center_x - 20, center_y - 10)) # 시작 버튼 내에 글자 띄우기
 
 def display_game_screen(): # 게임 화면 표시
@@ -79,6 +78,7 @@ center_y = screen_height-120 # 센터 y축
 start_button = pygame.Rect(0, 0, 120, 120) #버튼 생성
 start_button.center = (center_x, center_y) # 버튼의 중심위치 설정
 game_font = pygame.font.Font(None, 120) # 폰트 정의
+start_font = pygame.font.Font(None,30) # 파이썬 기본폰트, 글자 크기는 30으로 설정
 
 #화면색깔
 BLACK = (0, 0, 0) #RGB
