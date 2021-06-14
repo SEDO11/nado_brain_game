@@ -14,6 +14,11 @@ def shuffle_grid(number_count):
     rows = 5
     columns = 9
 
+    cell_size = 130 # 각 Grid cell 별 가로, 세로 크기
+    button_size = 110 # Grid cell 내에 실제로 그려질 버튼 크기
+    screen_left_margin = 55 # 전체 스크린 왼쪽 여백
+    screen_top_margin = 20 # 전체 스크린 위쪽 여백
+
     #[0,0,0,0,0,0,0,0,0]
     grid = [[0 for col in range(columns)] for row in range(rows)] # 5 x 9
 
@@ -25,6 +30,16 @@ def shuffle_grid(number_count):
         if grid[row_idx][col_idx] == 0:
             grid[row_idx][col_idx] = number # 숫자 지정
             number += 1
+
+        # 현재 Grid cell 위치 기준으로 x, y 위치를 구한다.
+        center_x = screen_left_margin + (col_idx * cell_size) + (cell_size / 2)
+        center_y = screen_top_margin + (row_idx * cell_size) + (cell_size / 2)
+
+        # 숫자 버튼 만들기
+        button = pygame.Rect(0,0, button_size, button_size)
+        button.center = (center_x, center_y)
+
+        number_buttons.append(button)
     
     #배치된 랜덤 숫자 확인
     print(grid)
@@ -36,7 +51,8 @@ def display_start_screen(): # 시작 버튼 표시, 그리기
     screen.blit(text,(center_x - 20, center_y - 10)) # 시작 버튼 내에 글자 띄우기
 
 def display_game_screen(): # 게임 화면 표시
-    print("Game Start") 
+    for idx, rect in enumerate(number_buttons, start=1):
+        pygame.draw.rect(screen, GRAY, rect)
 
 # 마우스를 클릭해서 얻은 좌표값을 position에 저장 
 def check_buttons(position): # 들어온 좌표 값 확인
@@ -60,6 +76,9 @@ start_button.center = (center_x, center_y) # 버튼의 중심위치 설정
 #화면색깔
 BLACK = (0, 0, 0) #RGB
 WHITE = (255, 255, 255) #RGB
+GRAY = (50, 50, 50)
+
+number_buttons = [] # 플레이어가 누르는 버튼 관리
 
 # 게임 시작 여부
 start = False # 초기에 게임을 시작하지 않았다고 설정
